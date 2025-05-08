@@ -1,27 +1,32 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
+import Home from './pages/Home/Home'
 import Header from './components/Header/Header'
-import About from './components/About/About'
-import ContactForm from './components/Contact/ContactForm'
-import Projects from './components/Projects/Projects'
+import About from './pages/About/About'
+import ContactForm from './pages/Contact/ContactForm'
+import Sidebar from './components/Sidebar/Sidebar'
 import Footer from './components/Footer/Footer'
 
 
 
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div>
-    <Header />
-    <About />
-    <ContactForm />
-    <Projects />
-    <Footer />
-    </div>
-  )
-  
-  
+    <BrowserRouter>
+      <Header />
+      <Sidebar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<ContactForm />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
 export default App
